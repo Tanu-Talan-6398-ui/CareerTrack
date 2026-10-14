@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareerTrack – Smart Study & Placement Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========== MOBILE TOP BAR (sirf chhoti screen par dikhta hai) ========== -->
+  <header class="topbar">
+    <button id="menu-toggle" class="icon-btn" aria-label="Open menu">☰</button>
+    <span class="topbar-title">CareerTrack</span>
+  </header>
+
+  <!-- Mobile par sidebar khulne par piche ka dark overlay -->
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <!-- ========== SIDEBAR NAVIGATION ========== -->
+  <aside id="sidebar" class="sidebar">
+    <div class="brand">
+      <span class="brand-logo">🎯</span>
+      <div>
+        <div class="brand-name">CareerTrack</div>
+        <div class="brand-sub">Study & Placement Planner</div>
+      </div>
+    </div>
+
+    <!-- data-page ki value JS me page ka naam batati hai -->
+    <nav class="nav">
+      <a href="#dashboard"    class="nav-link" data-page="dashboard"><span>🏠</span> Dashboard</a>
+      <a href="#targets"      class="nav-link" data-page="targets"><span>🎯</span> Today's Targets</a>
+      <a href="#roadmap"      class="nav-link" data-page="roadmap"><span>🗺️</span> Roadmap</a>
+      <a href="#academic"     class="nav-link" data-page="academic"><span>🎓</span> Academic Planner</a>
+      <a href="#revision"     class="nav-link" data-page="revision"><span>🔁</span> Revision Center</a>
+      <a href="#dsa"          class="nav-link" data-page="dsa"><span>💻</span> DSA Tracker</a>
+      <a href="#skills"       class="nav-link" data-page="skills"><span>🛠️</span> Skills Tracker</a>
+      <a href="#projects"     class="nav-link" data-page="projects"><span>📁</span> Projects</a>
+      <a href="#applications" class="nav-link" data-page="applications"><span>💼</span> Applications</a>
+      <a href="#settings"     class="nav-link" data-page="settings"><span>⚙️</span> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">Data is saved in your browser</div>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <!-- Har page ka content JavaScript is #app-view ke andar render karti hai -->
+  <main id="app-view" class="main"></main>
+
+  <!-- Popup forms (modal) yahan khulte hain -->
+  <div id="modal-root"></div>
+
+  <!-- Success / error messages yahan dikhte hain -->
+  <div id="toast-root" class="toast-root"></div>
+
+  <!-- ========== JAVASCRIPT FILES ========== -->
+  <!-- ORDER BAHUT IMPORTANT hai: pehle helpers, phir data, phir pages, aakhir me app.js -->
+  <script src="js/utils.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/roadmap.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/targets.js"></script>
+  <script src="js/revision.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

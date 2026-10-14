@@ -1,0 +1,771 @@
+/* =========================================================
+   CareerTrack – style.css
+   Colors: Navy blue + White + Light blue accents
+   ========================================================= */
+
+/* ---------- 1. THEME COLORS (CSS variables) ---------- */
+:root {
+    --navy: #0f2a4a;
+    --navy-2: #173a66;
+    --accent: #3b82f6;
+    --accent-soft: #eaf2fe;
+    --bg: #f5f8fc;
+    --card: #ffffff;
+    --text: #1b2a3d;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --success: #16a34a;
+    --success-soft: #dcfce7;
+    --warn: #d97706;
+    --warn-soft: #fef3c7;
+    --danger: #dc2626;
+    --danger-soft: #fee2e2;
+    --shadow: 0 1px 3px rgba(15, 42, 74, 0.08), 0 4px 12px rgba(15, 42, 74, 0.05);
+    --radius: 12px;
+    --sidebar-w: 250px;
+}
+
+/* Dark theme: Settings me theme badalne par html tag par data-theme="dark" lagta hai */
+:root[data-theme="dark"] {
+    --accent-soft: #16294a;
+    --bg: #0b1526;
+    --card: #12213a;
+    --text: #e6edf7;
+    --muted: #94a3b8;
+    --border: #223350;
+    --success-soft: #0f3a25;
+    --warn-soft: #3f2f0b;
+    --danger-soft: #451a1a;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- 2. BASIC RESET ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+h1 {
+    font-size: 1.6rem;
+}
+
+h2 {
+    font-size: 1.15rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.small {
+    font-size: 0.85rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ---------- 3. SIDEBAR ---------- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--navy);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 14px;
+    z-index: 100;
+    transition: transform 0.25s ease;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px 20px;
+}
+
+.brand-logo {
+    font-size: 1.8rem;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.brand-sub {
+    font-size: 0.72rem;
+    color: #9db7d9;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: #c5d6ee;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover {
+    background: var(--navy-2);
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.sidebar-footer {
+    font-size: 0.72rem;
+    color: #7f9cc4;
+    padding: 10px 8px 0;
+}
+
+/* ---------- 4. MAIN AREA ---------- */
+.main {
+    margin-left: var(--sidebar-w);
+    padding: 28px 32px 60px;
+    max-width: 1300px;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+.page-header p {
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+/* ---------- 5. MOBILE TOP BAR ---------- */
+.topbar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
+    background: var(--navy);
+    color: #fff;
+    align-items: center;
+    gap: 12px;
+    padding: 0 14px;
+    z-index: 90;
+}
+
+.topbar-title {
+    font-weight: 700;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 95;
+}
+
+.sidebar-overlay.show {
+    display: block;
+}
+
+/* ---------- 6. CARDS & GRID ---------- */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.grid {
+    display: grid;
+    gap: 16px;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.section {
+    margin-bottom: 22px;
+}
+
+/* Stat card (numbers on dashboard) */
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.stat-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--navy-2);
+}
+
+:root[data-theme="dark"] .stat-value {
+    color: #9cc4ff;
+}
+
+.stat-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+/* ---------- 7. PROGRESS BAR ---------- */
+.progress {
+    width: 100%;
+    height: 8px;
+    background: var(--accent-soft);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
+
+.progress-bar.green {
+    background: var(--success);
+}
+
+.progress-bar.orange {
+    background: var(--warn);
+}
+
+.progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+/* ---------- 8. BUTTONS ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.15s, box-shadow 0.15s;
+}
+
+.btn:hover {
+    background: var(--accent-soft);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+}
+
+.btn-success {
+    background: var(--success);
+    border-color: var(--success);
+    color: #fff;
+}
+
+.btn-success:hover {
+    background: #15803d;
+}
+
+.btn-danger {
+    background: var(--danger-soft);
+    border-color: var(--danger-soft);
+    color: var(--danger);
+}
+
+.btn-danger:hover {
+    background: var(--danger);
+    color: #fff;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* ---------- 9. BADGES ---------- */
+.badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.badge.green {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.badge.orange {
+    background: var(--warn-soft);
+    color: var(--warn);
+}
+
+.badge.red {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.badge.gray {
+    background: var(--border);
+    color: var(--muted);
+}
+
+/* ---------- 10. FORMS ---------- */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.92rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+    border-color: transparent;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+.error-text {
+    color: var(--danger);
+    font-size: 0.8rem;
+    min-height: 1em;
+}
+
+/* ---------- 11. TOOLBAR (search + filters) ---------- */
+.toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.toolbar input,
+.toolbar select {
+    width: auto;
+    min-width: 150px;
+}
+
+.toolbar .grow {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* ---------- 12. LISTS & ITEMS ---------- */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+}
+
+.item.done {
+    opacity: 0.6;
+}
+
+.item.done .item-title {
+    text-decoration: line-through;
+}
+
+.item-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.item-title {
+    font-weight: 600;
+}
+
+.item-meta {
+    font-size: 0.82rem;
+    color: var(--muted);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 3px;
+    align-items: center;
+}
+
+.item-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Tables */
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+th {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.tab {
+    padding: 7px 14px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.tab.active {
+    background: var(--navy-2);
+    color: #fff;
+    border-color: var(--navy-2);
+}
+
+/* Empty state */
+.empty {
+    text-align: center;
+    padding: 30px 16px;
+    color: var(--muted);
+}
+
+.empty .empty-icon {
+    font-size: 2rem;
+    margin-bottom: 6px;
+}
+
+/* Roadmap topic card (expand / collapse) */
+.topic-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.topic-body {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+}
+
+.subtopic-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+/* Info box (for explaining the recommendation system) */
+.info-box {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+}
+
+/* ---------- 13. MODAL (popup) ---------- */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 20, 40, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 200;
+    animation: fadeIn 0.15s ease;
+}
+
+.modal {
+    background: var(--card);
+    color: var(--text);
+    width: 100%;
+    max-width: 580px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.modal h2 {
+    margin-bottom: 16px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+/* ---------- 14. TOAST MESSAGES ---------- */
+.toast-root {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 300;
+}
+
+.toast {
+    padding: 11px 16px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.9rem;
+    background: var(--navy-2);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.2s ease;
+}
+
+.toast.success {
+    background: var(--success);
+}
+
+.toast.error {
+    background: var(--danger);
+}
+
+/* ---------- 15. RESPONSIVE (tablet & mobile) ---------- */
+@media (max-width: 1000px) {
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .topbar {
+        display: flex;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 74px 16px 50px;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toolbar input,
+    .toolbar select {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.35rem;
+    }
+}
